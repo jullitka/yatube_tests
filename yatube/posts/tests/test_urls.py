@@ -31,7 +31,7 @@ class PostURLTests(TestCase):
             '/create/': 'posts/create_post.html',
         }
         # Страницы доступны только автору
-        cls.AUTORIZED_AUTHOR_URLS = {
+        cls.AUTHORIZED_AUTHOR_URLS = {
             f'/posts/{cls.post.id}/edit/': 'posts/create_post.html',
         }
         # Перенаправляют на страницу авторизации
@@ -71,7 +71,7 @@ class PostURLTests(TestCase):
 
     def test_create_exists_at_desired_location(self):
         """Страница доступна  автору."""
-        for address in PostURLTests.AUTORIZED_AUTHOR_URLS.keys():
+        for address in PostURLTests.AUTHORIZED_AUTHOR_URLS.keys():
             with self.subTest(address=address):
                 response = self.authorized_author.get(address)
                 self.assertEqual(response.status_code, HTTPStatus.OK)
@@ -100,7 +100,7 @@ class PostURLTests(TestCase):
         """URL-адрес использует соответствующий шаблон."""
         for address, template in {
             **PostURLTests.PUBLIC_URLS,
-            **PostURLTests.AUTORIZED_AUTHOR_URLS,
+            **PostURLTests.AUTHORIZED_AUTHOR_URLS,
             **PostURLTests.AUTHORIZED_USER_URLS
         }.items():
             with self.subTest(address=address):
