@@ -1,10 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from django.contrib.auth import get_user_model
 
-from posts.models import Post, Group
-
-User = get_user_model()
+from posts.models import Post, Group, User
 
 
 class PostFormTests(TestCase):
@@ -52,6 +49,9 @@ class PostFormTests(TestCase):
             reverse('posts:profile', args=(self.user,))
         )
         self.assertEqual(Post.objects.count(), post_count + 1)
+        self.assertTrue(Post.objects.filter(
+            text=form_data['text'],
+            group=form_data['group']).exists())
 
     def test_edit_post(self):
         """Валидная форма изменяет пост в базе данных"""
@@ -75,3 +75,6 @@ class PostFormTests(TestCase):
         )
         self.assertEqual(response.context.get('post'), PostFormTests.post)
         self.assertEqual(Post.objects.count(), post_count)
+        self.assertTrue(Post.objects.filter(
+            text=changed_form_data['text'],
+            group=changed_form_data['group']).exists())
