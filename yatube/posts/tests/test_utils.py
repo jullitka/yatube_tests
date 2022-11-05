@@ -15,7 +15,10 @@ class PaginatorViewsTest(TestCase):
             slug='Тестовый слаг',
             description='Тестовое описание'
         )
-        cls.NUMBER_OF_POST = settings.NUM_POSTS_ON_PAGE + 3
+        cls.NUM_POSTS_ON_PAGE_2 = 3
+        cls.NUMBER_OF_POST = (
+            settings.NUM_POSTS_ON_PAGE + cls.NUM_POSTS_ON_PAGE_2
+        )
         cls.post = Post.objects.bulk_create(
             [
                 Post(
@@ -50,4 +53,7 @@ class PaginatorViewsTest(TestCase):
         for reverse_name in PaginatorViewsTest.reverse_names:
             with self.subTest(reverse_name=reverse_name):
                 response = self.client.get(reverse_name + '?page=2')
-                self.assertEqual(len(response.context['page_obj']), 3)
+                self.assertEqual(len(
+                    response.context['page_obj']),
+                    PaginatorViewsTest.NUM_POSTS_ON_PAGE_2
+                )
