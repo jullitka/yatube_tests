@@ -59,14 +59,12 @@ cd yatube
 python yatube/manage.py makemigrations
 python manage.py migrate
 ```
-Создать суперпользователя Django командой:
 
+- Запуск тестов:
 ```
-python manage.py createsuperuser
+python manage.py test
 ```
-и выполнить запрашиваемые в терминале действия
-
-Запустить проект:
+- Запусr проекта:
 ```
 python manage.py runserver
 ```
