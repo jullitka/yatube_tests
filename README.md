@@ -1,5 +1,6 @@
 # Тестирование проекта Yatube
- 
+[Yatube](https://github.com/jullitka/Yatube.git) - социальная сеть с авторизацией, публикациями, комментариями и подписками на авторов статей.
+
 Тестирование Models:
 - Проверка отображения значение поля __str__ в объектах моделей.
   
@@ -18,3 +19,8 @@
 Тестирование Forms: 
 - Проверка, что при отправки корректной формы создается неовая запись в базе данных.
 - Проверка, что при отправки формы редактирования публикации, происходит изменение публикации с соответствующим id в базе данных
+
+## Стек технологий
+[![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/-Django-464646?style=flat-square&logo=Django)](https://www.djangoproject.com/)
+[![Django REST Framework](https://img.shields.io/badge/-Django%20REST%20Framework-464646?style=flat-square&logo=Django%20REST%20Framework)](https://www.django-rest-framework.org/)
